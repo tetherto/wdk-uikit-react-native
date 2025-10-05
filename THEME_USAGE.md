@@ -5,10 +5,14 @@
 Wrap your app with the `ThemeProvider` to enable theming:
 
 ```tsx
-import { ThemeProvider } from 'wdk-uikit-react-native';
+import { ThemeProvider, lightTheme } from '@tetherto/wdk-uikit-react-native';
 
 function App() {
-  return <ThemeProvider>{/* Your app content */}</ThemeProvider>;
+  return (
+    <ThemeProvider initialTheme={lightTheme}>
+      {/* Your app content */}
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -19,13 +23,15 @@ function App() {
 The theme automatically switches based on system preferences:
 
 ```tsx
-<ThemeProvider defaultMode="auto">{/* Will use system theme */}</ThemeProvider>
+<ThemeProvider defaultMode="auto" initialTheme={lightTheme}>
+  {/* Will use system theme */}
+</ThemeProvider>
 ```
 
 ### 2. Manual Theme Control
 
 ```tsx
-import { useTheme } from 'wdk-uikit-react-native';
+import { useTheme } from '@tetherto/wdk-uikit-react-native';
 
 function ThemeToggle() {
   const { mode, setMode } = useTheme();
@@ -43,16 +49,18 @@ function ThemeToggle() {
 Apply your brand colors and fonts:
 
 ```tsx
-<ThemeProvider
-  brandConfig={{
-    primaryColor: '#007AFF',
-    secondaryColor: '#FF3B30',
-    fontFamily: {
-      regular: 'Inter-Regular',
-      bold: 'Inter-Bold',
-    },
-  }}
->
+import { ThemeProvider, createThemeFromBrand } from '@tetherto/wdk-uikit-react-native';
+
+const brandTheme = createThemeFromBrand({
+  primaryColor: '#007AFF',
+  secondaryColor: '#FF3B30',
+  fontFamily: {
+    regular: 'Inter-Regular',
+    bold: 'Inter-Bold',
+  },
+}, 'light');
+
+<ThemeProvider initialTheme={brandTheme}>
   {/* Your app */}
 </ThemeProvider>
 ```
@@ -62,17 +70,44 @@ Apply your brand colors and fonts:
 Provide completely custom themes:
 
 ```tsx
+import { ThemeProvider } from '@tetherto/wdk-uikit-react-native';
+
 const myLightTheme = {
-  mode: 'light',
+  mode: 'light' as const,
   colors: {
     primary: '#007AFF',
+    primaryLight: '#4DA6FF',
+    primaryDark: '#0056CC',
+    onPrimary: '#FFFFFF',
+    secondary: '#FF3B30',
+    secondaryLight: '#FF6B60',
+    secondaryDark: '#CC2F26',
     background: '#FFFFFF',
-    // ... other colors
+    surface: '#F9FAFB',
+    surfaceVariant: '#F3F4F6',
+    surfaceElevated: '#E5E7EB',
+    text: '#111827',
+    textSecondary: '#6B7280',
+    textDisabled: '#9CA3AF',
+    border: '#E5E7EB',
+    borderLight: '#F3F4F6',
+    error: '#EF4444',
+    warning: '#F59E0B',
+    success: '#10B981',
+    info: '#3B82F6',
   },
-  // ... typography, spacing, etc.
+  typography: {
+    fontFamily: { regular: 'System', medium: 'System', semiBold: 'System', bold: 'System' },
+    fontSize: { xs: 10, sm: 12, base: 14, md: 16, lg: 18, xl: 20, xxl: 24, xxxl: 30 },
+    fontWeight: { regular: '400', medium: '500', semiBold: '600', bold: '700' },
+  },
+  spacing: { xs: 4, sm: 8, base: 12, md: 16, lg: 24, xl: 32, xxl: 48, xxxl: 64 },
+  borderRadius: { none: 0, sm: 4, md: 8, lg: 16, xl: 24, xxl: 32, full: 9999 },
 };
 
-<ThemeProvider customLightTheme={myLightTheme}>{/* Your app */}</ThemeProvider>;
+<ThemeProvider customLightTheme={myLightTheme}>
+  {/* Your app */}
+</ThemeProvider>
 ```
 
 ### 5. Component Overrides
@@ -81,6 +116,7 @@ Customize individual components:
 
 ```tsx
 <ThemeProvider
+  initialTheme={lightTheme}
   componentOverrides={{
     TransactionItem: {
       container: {
@@ -108,7 +144,7 @@ Customize individual components:
 Access theme values in your components:
 
 ```tsx
-import { useTheme } from 'wdk-uikit-react-native';
+import { useTheme } from '@tetherto/wdk-uikit-react-native';
 
 function MyComponent() {
   const { theme } = useTheme();
@@ -130,11 +166,10 @@ function MyComponent() {
 
 ### Colors (Semantic Naming)
 
-- `primary`, `primaryLight`, `primaryDark` - Main brand colors
+- `primary`, `primaryLight`, `primaryDark`, `onPrimary` - Main brand colors
 - `secondary`, `secondaryLight`, `secondaryDark` - Secondary brand colors
 - `background` - Main background color
-- `surface` - Card/container background
-- `surfaceVariant` - Alternative surface color
+- `surface`, `surfaceVariant`, `surfaceElevated` - Card/container backgrounds
 - `text`, `textSecondary`, `textDisabled` - Text hierarchy
 - `border`, `borderLight` - Border colors
 - `error`, `warning`, `success`, `info` - Status colors
@@ -142,12 +177,12 @@ function MyComponent() {
 ### Typography
 
 - Font families (regular, medium, semiBold, bold)
-- Font sizes (xs, sm, base, lg, xl, xxl, xxxl)
-- Font weights
+- Font sizes (xs, sm, base, md, lg, xl, xxl, xxxl)
+- Font weights (regular: '400', medium: '500', semiBold: '600', bold: '700')
 
 ### Spacing
 
-- Consistent spacing scale (xs, sm, md, lg, xl, xxl, xxxl)
+- Consistent spacing scale (xs, sm, base, md, lg, xl, xxl, xxxl)
 
 ### Border Radius
 
@@ -189,7 +224,7 @@ function Settings() {
 ### Creating Theme from Brand
 
 ```tsx
-import { createThemeFromBrand } from 'wdk-uikit-react-native';
+import { createThemeFromBrand } from '@tetherto/wdk-uikit-react-native';
 
 const myTheme = createThemeFromBrand(
   {
@@ -199,7 +234,3 @@ const myTheme = createThemeFromBrand(
   'dark'
 ); // 'light' or 'dark'
 ```
-
-## Component Variants (Future)
-
-The theme system includes support for component variants (primary, secondary, tertiary, outline, ghost) that can be implemented in custom components for consistent styling across the app.

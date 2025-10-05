@@ -71,31 +71,25 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
 // Default Eye Icons (fallback components) - now use theme
 const DefaultEyeOpenIcon = () => {
   const { theme } = useTheme();
-  return (
-    <Text
-      style={{
-        color: theme.colors.text,
-        fontSize: theme.typography.fontSize.sm,
-        margin: 4,
-      }}
-    >
-      show
-    </Text>
-  );
+  const styles = StyleSheet.create({
+    eyeIconStyle: {
+      color: theme.colors.text,
+      fontSize: theme.typography.fontSize.sm,
+      margin: 4,
+    },
+  });
+  return <Text style={styles.eyeIconStyle}>show</Text>;
 };
 const DefaultEyeClosedIcon = () => {
   const { theme } = useTheme();
-  return (
-    <Text
-      style={{
-        color: theme.colors.text,
-        fontSize: theme.typography.fontSize.sm,
-        margin: 4,
-      }}
-    >
-      hide
-    </Text>
-  );
+  const styles = StyleSheet.create({
+    eyeIconStyle: {
+      color: theme.colors.text,
+      fontSize: theme.typography.fontSize.sm,
+      margin: 4,
+    },
+  });
+  return <Text style={styles.eyeIconStyle}>hide</Text>;
 };
 
 interface BalanceProps {
@@ -197,6 +191,17 @@ const Balance: React.FC<BalanceProps> = ({
           fontSize: theme.typography.fontSize.base,
           color: theme.colors.text,
         },
+        eyeIconStyle: {
+          color: theme.colors.text,
+          fontSize: theme.typography.fontSize.sm,
+          margin: 4,
+        },
+        hiddenBalanceContainer: {
+          alignItems: 'flex-end',
+        },
+        hiddenBalanceText: {
+          fontSize: 50,
+        },
         ...theme.componentOverrides?.Balance,
       }),
     [theme]
@@ -232,10 +237,13 @@ const Balance: React.FC<BalanceProps> = ({
             <View
               style={[
                 styles.balance,
-                { width: balanceWidth, alignItems: 'flex-end' },
+                { width: balanceWidth },
+                styles.hiddenBalanceContainer,
               ]}
             >
-              <Text style={[styles.animatedBalanceText, { fontSize: 50 }]}>
+              <Text
+                style={[styles.animatedBalanceText, styles.hiddenBalanceText]}
+              >
                 ***
               </Text>
             </View>

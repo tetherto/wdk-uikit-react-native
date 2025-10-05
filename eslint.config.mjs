@@ -16,6 +16,7 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   {
+    files: ['**/*.{js,ts,tsx}'],
     extends: fixupConfigRules(compat.extends('@react-native', 'prettier')),
     plugins: { prettier },
     rules: {

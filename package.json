@@ -1,61 +1,42 @@
 {
-  "name": "wdk-uikit-react-native",
-  "version": "0.1.0",
-  "description": "FILL ME",
+  "name": "@tetherto/wdk-uikit-react-native",
+  "version": "1.0.0-beta.1",
+  "description": "A set of reusable, stateless components for the WDK UI Kit.",
+  "author": "Tether Team <support@tether.io>",
+  "license": "Apache-2.0",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
-  "exports": {
-    ".": {
-      "source": "./src/index.tsx",
-      "types": "./lib/typescript/src/index.d.ts",
-      "default": "./lib/module/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "react-native.config.js",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
-  ],
   "scripts": {
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
-    "prepare": "bob build",
-    "release": "release-it --only-version"
+    "prepare": "bob build"
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "wdk",
+    "wallet",
+    "tether",
+    "ui kit"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tetherto.git"
+    "url": "git+https://github.com/tetherto/wdk-starter-react-native.git"
   },
-  "author": "ndrkltsk <a.klitsuk@noxtton.com> (https://github.com/tetherto)",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tetherto/issues"
+    "url": "https://github.com/tetherto/wdk-starter-react-native/issues"
   },
-  "homepage": "https://github.com/tetherto#readme",
+  "homepage": "https://github.com/tetherto/wdk-starter-react-native#readme",
   "publishConfig": {
+    "access": "restricted",
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "lucide-react-native": "^0.544.0",
+    "react-native-qr-svg": "^1.5.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.1",
@@ -65,7 +46,6 @@
     "@evilmartians/lefthook": "^1.12.3",
     "@react-native/babel-preset": "0.81.1",
     "@react-native/eslint-config": "^0.81.1",
-    "@release-it/conventional-changelog": "^10.0.1",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.1.12",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
@@ -89,7 +69,25 @@
     "react": "*",
     "react-native": "*"
   },
-  "packageManager": "yarn@3.6.1",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -102,31 +100,21 @@
       "@commitlint/config-conventional"
     ]
   },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": {
-          "name": "angular"
-        }
-      }
-    }
-  },
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -150,9 +138,5 @@
     "languages": "js",
     "type": "library",
     "version": "0.54.3"
-  },
-  "dependencies": {
-    "lucide-react-native": "^0.544.0",
-    "react-native-qr-svg": "^1.5.0"
   }
 }

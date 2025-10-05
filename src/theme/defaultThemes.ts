@@ -114,9 +114,9 @@ export function createThemeFromBrand(
   const lightenColor = (color: string, amount: number) => {
     const num = parseInt(color.replace('#', ''), 16);
     const amt = Math.round(2.55 * amount);
-    const R = (num >> 16) + amt;
-    const G = ((num >> 8) & 0x00ff) + amt;
-    const B = (num & 0x0000ff) + amt;
+    const R = Math.floor(num / 65536) + amt;
+    const G = Math.floor((num % 65536) / 256) + amt;
+    const B = (num % 256) + amt;
     return (
       '#' +
       (
@@ -133,9 +133,9 @@ export function createThemeFromBrand(
   const darkenColor = (color: string, amount: number) => {
     const num = parseInt(color.replace('#', ''), 16);
     const amt = Math.round(2.55 * amount);
-    const R = (num >> 16) - amt;
-    const G = ((num >> 8) & 0x00ff) - amt;
-    const B = (num & 0x0000ff) - amt;
+    const R = Math.floor(num / 65536) - amt;
+    const G = Math.floor((num % 65536) / 256) - amt;
+    const B = (num % 256) - amt;
     return (
       '#' +
       (

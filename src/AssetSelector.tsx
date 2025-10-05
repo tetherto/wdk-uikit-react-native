@@ -173,6 +173,12 @@ export function AssetSelector({
           color: theme.colors.textSecondary,
           textAlign: 'center',
         },
+        disabledTokenRow: {
+          opacity: 0.5,
+        },
+        disabledRecentToken: {
+          opacity: 0.5,
+        },
         ...theme.componentOverrides?.AssetSelector,
       }),
     [theme]
@@ -183,7 +189,7 @@ export function AssetSelector({
 
     return (
       <TouchableOpacity
-        style={[styles.tokenRow, isDisabled && { opacity: 0.5 }]}
+        style={[styles.tokenRow, isDisabled && styles.disabledTokenRow]}
         onPress={() => onSelectToken(item)}
         disabled={isDisabled}
         activeOpacity={isDisabled ? 1 : 0.7}
@@ -247,7 +253,10 @@ export function AssetSelector({
               return (
                 <TouchableOpacity
                   key={token.id}
-                  style={[styles.recentToken, isDisabled && { opacity: 0.5 }]}
+                  style={[
+                    styles.recentToken,
+                    isDisabled && styles.disabledRecentToken,
+                  ]}
                   onPress={() => onSelectToken(token)}
                   disabled={isDisabled}
                   activeOpacity={isDisabled ? 1 : 0.7}

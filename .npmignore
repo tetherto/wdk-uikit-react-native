@@ -1,0 +1,21 @@
+# Config files
+.editorconfig
+.gitattributes
+.gitignore
+.nvmrc
+.watchmanconfig
+babel.config.js
+eslint.config.mjs
+lefthook.yml
+tsconfig.json
+tsconfig.build.json
+
+# Documentation
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+THEME_USAGE.md
+
+# Development
+node_modules/
+*.log
+.DS_Store
