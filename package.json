@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/tetherto/wdk-starter-react-native#readme",
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
