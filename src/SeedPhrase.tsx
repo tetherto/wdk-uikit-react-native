@@ -24,11 +24,6 @@ export function SeedPhrase({
     if (!editable || !onWordChange) return;
 
     onWordChange(index, text);
-
-    // Auto-focus next input if word is entered and not the last input
-    if (text.trim() && index < words.length - 1) {
-      inputRefs.current[index + 1]?.focus();
-    }
   };
 
   const handleKeyPress = (index: number, key: string) => {
