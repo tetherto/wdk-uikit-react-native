@@ -6,7 +6,7 @@ To see it in action, please check the  Wallet [WDK React Native Starter](https:/
 
 ## 🔍 About WDK
 
-This repository is part of [**WDK (Wallet Development Kit) by Tether**](https://wallet.tether.io/), which empowers developers to build secure, non-custodial wallets with unified blockchain access, stateless architecture, and complete user control.
+This repository is part of [**WDK (Wallet Development Kit) by Tether**](https://wdk.tether.io/), which empowers developers to build secure, non-custodial wallets with unified blockchain access, stateless architecture, and complete user control.
 
 See the [React Native UI Kit documentation](https://docs.wdk.tether.io/ui-kits/react-native-ui-kit/). For the complete ecosystem, see the [general WDK documentation](https://docs.wdk.tether.io/).
 
