@@ -1,7 +1,7 @@
 {
   "name": "@tetherto/wdk-uikit-react-native",
   "version": "1.0.0-beta.3",
-  "description": "A set of reusable, stateless components for the WDK UI Kit.",
+  "description": "Reusable, stateless React Native UI components for WDK (Wallet Development Kit) by Tether.",
   "author": "Tether Team <support@tether.io>",
   "license": "Apache-2.0",
   "main": "./lib/module/index.js",
@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/tetherto/wdk-starter-react-native/issues"
   },
-  "homepage": "https://github.com/tetherto/wdk-starter-react-native#readme",
+  "homepage": "https://docs.wdk.tether.io/ui-kits/react-native-ui-kit/",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
